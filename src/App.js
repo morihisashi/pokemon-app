@@ -35,7 +35,7 @@ function App() {
   console.log(pokemonData);
 
   return (
-    <div>
+    <div className="App">
       {loading ? (
         <h1>ロード中・・・</h1>
       ) : (
