@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { getAllPokemon, getPokemon } from './utils/pokemon.js';
+import { getAllPokemon, getPokemon } from './utils/pokemon.jsx';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar';
 
 
 function App() {
   const initialURL = 'https://pokeapi.co/api/v2/pokemon';
-  const [loading, setLoading] = useState<boolean>(true);
-  const [pokemonData, setPokemonData] = useState<string[]>([]);
-  const [nextURL, setNextURL] = useState<string>("");
-  const [prevURL, setPrevURL] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [pokemonData, setPokemonData] = useState([]);
+  const [nextURL, setNextURL] = useState("");
+  const [prevURL, setPrevURL] = useState("");
 
 
   useEffect(() => {
