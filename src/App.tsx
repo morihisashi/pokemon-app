@@ -7,10 +7,10 @@ import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const initialURL = 'https://pokeapi.co/api/v2/pokemon';
-  const [loading, setLoading] = useState(true);
-  const [pokemonData, setPokemonData] = useState([]);
-  const [nextURL, setNextURL] = useState("");
-  const [prevURL, setPrevURL] = useState("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [pokemonData, setPokemonData] = useState<string[]>([]);
+  const [nextURL, setNextURL] = useState<string>("");
+  const [prevURL, setPrevURL] = useState<string>("");
 
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
       setLoading(false);
     }
     fetchPokemonData();
-  },[])
+  }, [])
 
   const loadPokemon = async (data) => {
     let _pokemonData = await Promise.all(
@@ -47,8 +47,8 @@ function App() {
   };
 
   const handlePrevPage = async () => {
-    if(!prevURL) return;
-    
+    if (!prevURL) return;
+
     setLoading(true);
     let data = await getAllPokemon(prevURL);
     //各ポケモンの詳細なデータを取得
@@ -56,28 +56,28 @@ function App() {
     setNextURL(data.next);
     setPrevURL(data.previous);
     setLoading(false);
-  };  
+  };
 
   return (
     <>
-    <Navbar />
-    <div className="App">
-      {loading ? (
-        <h1>ロード中・・・</h1>
-      ) : (
-        <>
-          <div className="pokemonCardContainer">
-            {pokemonData.map((pokemon, i) => {
-              return <Card key={i} pokemon={pokemon} />;
-            })}
-          </div>
-          <div className="btn">
-            <button onClick={handlePrevPage}>前へ</button>
-            <button onClick={handleNextPage}>次へ</button>
-          </div>
-        </>
-      )}
-    </div>
+      <Navbar />
+      <div className="App">
+        {loading ? (
+          <h1>ロード中・・・</h1>
+        ) : (
+          <>
+            <div className="pokemonCardContainer">
+              {pokemonData.map((pokemon, i) => {
+                return <Card key={i} pokemon={pokemon} />;
+              })}
+            </div>
+            <div className="btn">
+              <button onClick={handlePrevPage}>前へ</button>
+              <button onClick={handleNextPage}>次へ</button>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }
